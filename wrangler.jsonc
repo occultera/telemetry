@@ -1,0 +1,12 @@
+// Occultera telemetry collector — Cloudflare Worker + D1. Deploy: npx wrangler deploy (see README.md)
+{
+  "name": "occultera-telemetry",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "telemetry.occultera.dev", "custom_domain": true }],
+  "d1_databases": [{ "binding": "DB", "database_name": "occultera-telemetry", "database_id": "REPLACE-WITH-THE-ID-FROM-wrangler-d1-create" }],
+  "triggers": { "crons": ["17 3 * * *"] },
+  "vars": { "GITHUB_REPO": "occultera/occultera", "RETENTION_DAYS": "90", "ISSUE_MIN_INSTALLS": "1" }
+  // secret: GITHUB_TOKEN (fine-grained, this repository only, Issues: read and write) — npx wrangler secret put GITHUB_TOKEN
+}
