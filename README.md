@@ -5,7 +5,8 @@ What the application sends and why: wiki page *Telemetry* and `app/telemetry/` i
 
 - Accepts only the two structured event types (`error`, `usage`, schema 1); anything else is refused with 400.
 - Stores no IP address and no request header. Rows are deleted after 90 days (daily cron).
-- A new crash fingerprint opens one GitHub issue labelled `crash` + `telemetry`; repeats only update the counters.
+- Crashes are grouped by fingerprint in D1; repeats only update the counters. No issue is opened automatically: the
+  maintainer reviews the table and opens issues by hand (set the `GITHUB_TOKEN` secret to switch automatic issues on).
 
 ## Deploy (once)
 
